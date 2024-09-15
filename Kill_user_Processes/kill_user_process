@@ -1,0 +1,31 @@
+#!/bin/bash
+
+while true; do
+  # Get the list of top 10 users (with usernames of exactly 8 characters) based on CPU usage
+  top_users=$(ps -eo user --sort=-%cpu | awk '{if(length($1)==8) print $1}' | uniq -c | sort -nr | head -n 10 | awk '{print $2}')
+
+  # Initialize an array to store the usernames whose processes were killed
+  killed_users=()
+
+  for user in $top_users; do
+    # Kill all processes of the user
+    pkill -9 -u "$user"
+
+    # Add the user to the killed_users array
+    killed_users+=("$user")
+  done
+
+  # Print the list of killed users
+  if [ ${#killed_users[@]} -gt 0 ]; then
+    echo "Killed processes of the following users:"
+    for user in "${killed_users[@]}"; do
+      echo "$user"
+    done
+  else
+    echo "No users with 8 character usernames found to kill."
+  fi
+
+  # Briefly pause to reduce CPU usage of this script
+  sleep 0.5
+done
+

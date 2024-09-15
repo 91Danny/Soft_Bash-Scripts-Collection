@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Define the input file containing a list of cPanel usernames
+input_file="username_list.txt"
+
+# Define the suspension reason
+suspension_reason="Migrated to Nucleus"
+
+# Loop through each username in the input file
+while IFS= read -r username; do
+    # Check if the cPanel account exists
+    if grep -q "^$username:" /etc/trueuserowners; then
+        # Check if the account is already suspended
+        if grep -qE "^$username:" /var/cpanel/suspended/; then
+            echo "Skipping $username - Account is already suspended"
+        else
+            # Use the '/scripts/suspendacct' command to suspend the cPanel account
+            /scripts/suspendacct "$username" "$suspension_reason"
+            echo "Suspended cPanel account: $username"
+        fi
+    else
+        echo "Skipping $username - Account not found"
+    fi
+done < "$input_file"
+

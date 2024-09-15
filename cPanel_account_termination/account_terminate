@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Check if the file 'usernames' exists
+if [ ! -f "usernames" ]; then
+    echo "Error: The 'usernames' file does not exist."
+    exit 1
+fi
+
+# Loop through each line in the 'usernames' file
+while IFS= read -r username || [[ -n "$username" ]]; do
+    # Execute the removeacct command with the --keepdns option for each username
+    /scripts/removeacct --keepdns "$username"
+
+    # Optionally, you can add a sleep to avoid overwhelming the server
+    # sleep 5
+done < "usernames"

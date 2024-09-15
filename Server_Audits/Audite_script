@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Define the search paths and corresponding output directories
+search_paths=("/home" "/path2" "/path3")
+output_dirs=("/output/directory/for/home" "/output/directory/for/path2" "/output/directory/for/path3")
+
+# Loop through each search path
+for ((i=0; i<${#search_paths[@]}; i++)); do
+    # Run the first command and save output to corresponding Media_Audit file
+    find "${search_paths[i]}" -type f \( -name "*.mp4" -o -name "*.mp3" -o -name "*.mov" \) -not -path "*/wp-content/*" -exec du -sh {} + >> "${output_dirs[i]}/Media_Audit"
+    
+    # Run the second command and save output to corresponding Large_Files file
+    find "${search_paths[i]}" -type f -size +100M -exec du -sh {} \; >> "${output_dirs[i]}/Large_Files"
+done
+

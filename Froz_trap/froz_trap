@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Function to display date and time
+get_datetime() {
+  date +"%Y-%m-%d %H:%M:%S"
+}
+
+# Function to handle script termination
+cleanup() {
+  echo "Script terminated at $(get_datetime)"
+  rm -f "$0"
+  exit
+}
+
+# Trap signals to call cleanup function
+trap cleanup SIGINT SIGTERM
+
+# Main script logic
+echo "Script started at $(get_datetime)"
+
+while true; do
+  # Run the exim command to clear frozen mails and suppress removal messages
+  exim -bpr | grep frozen | awk '{print $3}' | xargs exim -Mrm >/dev/null 2>&1
+
+  # Print Frozen mails cleared message with date and time
+  echo "Frozen mails cleared at $(get_datetime)"
+
+  # Wait for 9 minutes
+  sleep 540
+done
+
