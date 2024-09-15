@@ -23,7 +23,7 @@ The script also has a cleanup mechanism that safely terminates it when interrupt
 
 1. Clone or download the script:
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
+    git clone https://github.com/91Danny/Soft_Bash-Scripts-Collection/tree/main/Froz_trap
     cd your-repo
     ```
 
