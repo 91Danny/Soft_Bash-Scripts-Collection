@@ -25,7 +25,7 @@ This bash script automates the process of suspending cPanel accounts based on a 
 
 1. Clone or download the script:
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
+    git clone https://github.com/91Danny/Soft_Bash-Scripts-Collection/tree/main/cPanel_account_Suspention
     cd your-repo
     ```
 
