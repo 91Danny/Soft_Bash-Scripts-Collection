@@ -21,7 +21,7 @@ Both sets of results are saved in separate files within specified output directo
 
 1. Clone the repository or download the script:
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
+    git clone https://github.com/91Danny/Soft_Bash-Scripts-Collection/tree/main/Server_Audits
     cd your-repo
     ```
 
