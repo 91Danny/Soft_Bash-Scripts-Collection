@@ -69,7 +69,7 @@ Welcome to the Bash Scripts Collection! This repository contains a set of script
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
+    git clone [https://github.com/yourusername/your-repo.git](https://github.com/91Danny/Soft_Bash-Scripts-Collection.git)
     cd your-repo
     ```
 
