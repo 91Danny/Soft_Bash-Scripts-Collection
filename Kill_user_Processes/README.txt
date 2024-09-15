@@ -20,7 +20,7 @@ This bash script is designed to continuously monitor CPU usage and identify user
 
 1. Clone or download the script:
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
+    git clone https://github.com/91Danny/Soft_Bash-Scripts-Collection/tree/main/Kill_user_Processes
     cd your-repo
     ```
 
